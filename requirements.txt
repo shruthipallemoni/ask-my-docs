@@ -1,0 +1,36 @@
+
+# Core
+requests==2.33.1
+
+# Ingestion
+rank-bm25==0.2.2
+
+# Vector DB
+qdrant-client==1.18.0
+
+# Embeddings + reranking (local, free — downloads bge-m3 / bge-reranker-base
+# weights from Hugging Face on first run, then caches locally)
+sentence-transformers==3.0.1
+torch>=2.2
+
+# LLM generation via Ollama (make sure Ollama is installed separately:
+# https://ollama.com — then run `ollama pull llama3.1:8b`)
+ollama==0.3.3
+
+# Orchestration (added when we build the retrieval/generation graph)
+langchain==0.3.7
+langgraph==0.2.53
+langchain-ollama==0.2.0
+langchain-groq==0.2.1
+
+# API layer (added when we build src/api)
+fastapi==0.115.5
+uvicorn==0.32.1
+
+# Evaluation (added in Phase 2)
+ragas==0.2.6
+
+# Dev / testing
+pytest==8.3.3
+
+groq==0.30.0

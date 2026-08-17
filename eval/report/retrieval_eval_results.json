@@ -1,0 +1,928 @@
+{
+  "summary": {
+    "total_scorable_questions": 40,
+    "not_covered_questions_excluded": 5,
+    "hit_rate_at_1": 0.625,
+    "hit_rate_at_3": 0.85,
+    "hit_rate_at_5": 0.85,
+    "mrr": 0.725,
+    "per_category": {
+      "auth_scope": {
+        "count": 6,
+        "hit_rate_at_5": 0.8333333333333334,
+        "mrr": 0.638888888888889
+      },
+      "endpoint_lookup": {
+        "count": 19,
+        "hit_rate_at_5": 0.9473684210526315,
+        "mrr": 0.8421052631578947
+      },
+      "error_code": {
+        "count": 5,
+        "hit_rate_at_5": 0.6,
+        "mrr": 0.4666666666666667
+      },
+      "parameter_schema": {
+        "count": 6,
+        "hit_rate_at_5": 0.6666666666666666,
+        "mrr": 0.5555555555555556
+      },
+      "rate_limit": {
+        "count": 4,
+        "hit_rate_at_5": 1.0,
+        "mrr": 0.875
+      }
+    },
+    "failures": [
+      {
+        "id": "gs_017",
+        "query": "What's the endpoint to invite someone to collaborate and then check pending invitations?",
+        "expected": [
+          "GET /repos/{owner}/{repo}/invitations",
+          "PUT /repos/{owner}/{repo}/collaborators/{username}"
+        ],
+        "retrieved": [
+          "GET /teams/{team_id}/invitations",
+          "PUT /orgs/{org}/teams/{team_slug}/memberships/{username}",
+          "PUT /teams/{team_id}/memberships/{username}",
+          "PATCH /user/memberships/orgs/{org}",
+          "POST /orgs/{org}/invitations"
+        ]
+      },
+      {
+        "id": "gs_019",
+        "query": "What are the required fields when creating an issue?",
+        "expected": [
+          "POST /repos/{owner}/{repo}/issues"
+        ],
+        "retrieved": [
+          "POST /orgs/{org}/issue-fields",
+          "POST /orgs/{org}/issue-types",
+          "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
+          "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions",
+          "PUT /orgs/{org}/issue-types/{issue_type_id}"
+        ]
+      },
+      {
+        "id": "gs_024",
+        "query": "Is the path parameter for owner and repo case sensitive when creating an issue?",
+        "expected": [
+          "POST /repos/{owner}/{repo}/issues"
+        ],
+        "retrieved": [
+          "DELETE /repos/{owner}/{repo}/issues/{issue_number}/lock",
+          "PUT /repos/{owner}/{repo}/issues/{issue_number}/lock",
+          "POST /repos/{owner}/{repo}/issues/{issue_number}/labels",
+          "PUT /repos/{owner}/{repo}/issues/{issue_number}/labels",
+          "POST /repos/{owner}/{repo}/issues/{issue_number}/suggestions/{suggestion_id}/dismiss"
+        ]
+      },
+      {
+        "id": "gs_026",
+        "query": "What's the difference between the repo scope and the public_repo scope?",
+        "expected": [
+          "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+        ],
+        "retrieved": [
+          "POST /user/repos",
+          "POST /repos/{owner}/{repo}/secret-scanning/custom-patterns",
+          "GET /repos/{owner}/{repo}/teams",
+          "DELETE /repos/{owner}/{repo}/secret-scanning/custom-patterns",
+          "POST /orgs/{org}/repos"
+        ]
+      },
+      {
+        "id": "gs_031",
+        "query": "What does a 410 status code mean when creating an issue?",
+        "expected": [
+          "POST /repos/{owner}/{repo}/issues"
+        ],
+        "retrieved": [
+          "POST /repos/{owner}/{repo}/issues/{issue_number}/labels",
+          "DELETE /repos/{owner}/{repo}/issues/{issue_number}/labels",
+          "PUT /repos/{owner}/{repo}/issues/{issue_number}/lock",
+          "GET /repos/{owner}/{repo}/issues/{issue_number}/assignees/{assignee}",
+          "DELETE /repos/{owner}/{repo}/issues/{issue_number}/labels/{name}"
+        ]
+      },
+      {
+        "id": "gs_032",
+        "query": "What HTTP status code is returned on a successful repository creation?",
+        "expected": [
+          "POST /orgs/{org}/repos"
+        ],
+        "retrieved": [
+          "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+          "GET /repos/{owner}/{repo}/stats/code_frequency",
+          "GET /repos/{owner}/{repo}/hooks/{hook_id}/deliveries",
+          "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions",
+          "POST /repos/{owner}/{repo}/issues"
+        ]
+      }
+    ]
+  },
+  "detailed_results": [
+    {
+      "id": "gs_001",
+      "query": "How do I create a new issue in a repository?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "POST /repos/{owner}/{repo}/issues"
+      ],
+      "retrieved": [
+        "POST /repos/{owner}/{repo}/issues",
+        "POST /repos/{owner}/{repo}/issues",
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+        "PUT /repos/{owner}/{repo}/issues/{issue_number}/labels"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_002",
+      "query": "What endpoint do I use to delete a repository?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "DELETE /repos/{owner}/{repo}"
+      ],
+      "retrieved": [
+        "DELETE /repos/{owner}/{repo}",
+        "DELETE /repos/{owner}/{repo}/secret-scanning/custom-patterns",
+        "DELETE /repos/{owner}/{repo}/actions/runs/{run_id}",
+        "DELETE /repos/{owner}/{repo}/codespaces/secrets/{secret_name}",
+        "DELETE /repos/{owner}/{repo}/collaborators/{username}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_003",
+      "query": "How can I list all open pull requests for a repo?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /repos/{owner}/{repo}/pulls"
+      ],
+      "retrieved": [
+        "GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls",
+        "GET /repos/{owner}/{repo}/pulls",
+        "GET /repos/{owner}/{repo}/interaction-limits/pulls/bypass-list",
+        "GET /repos/{owner}/{repo}/pulls/{pull_number}/files",
+        "PATCH /repos/{owner}/{repo}/interaction-limits/pulls/creation-cap"
+      ],
+      "rank_of_first_hit": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "gs_004",
+      "query": "How do I merge a pull request via the API?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge"
+      ],
+      "retrieved": [
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "POST /repos/{owner}/{repo}/deployments",
+        "GET /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "PUT /repos/{owner}/{repo}/branches/{branch}/protection"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_005",
+      "query": "What's the API call to star a gist?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "PUT /gists/{gist_id}/star"
+      ],
+      "retrieved": [
+        "PUT /gists/{gist_id}/star",
+        "GET /gists/{gist_id}/star",
+        "DELETE /gists/{gist_id}/star",
+        "PUT /user/starred/{owner}/{repo}",
+        "GET /gists/starred"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_006",
+      "query": "How do I create a repository inside an organization?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "POST /orgs/{org}/repos"
+      ],
+      "retrieved": [
+        "POST /repos/{template_owner}/{template_repo}/generate",
+        "POST /orgs/{org}/repos",
+        "POST /orgs/{org}/repos",
+        "POST /orgs/{org}/rulesets",
+        "POST /repos/{template_owner}/{template_repo}/generate"
+      ],
+      "rank_of_first_hit": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "gs_007",
+      "query": "How do I create a new repository from a template repo?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "POST /repos/{template_owner}/{template_repo}/generate"
+      ],
+      "retrieved": [
+        "POST /repos/{template_owner}/{template_repo}/generate",
+        "POST /repos/{template_owner}/{template_repo}/generate",
+        "POST /orgs/{org}/repos",
+        "POST /repos/{owner}/{repo}/security-advisories",
+        "POST /user/codespaces/{codespace_name}/publish"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_008",
+      "query": "What endpoint publishes a new release for a repo?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "POST /repos/{owner}/{repo}/releases"
+      ],
+      "retrieved": [
+        "GET /repos/{owner}/{repo}/releases/{release_id}",
+        "POST /repos/{owner}/{repo}/releases",
+        "POST /repos/{owner}/{repo}/releases/{release_id}/assets",
+        "PUT /repos/{owner}/{repo}/contents/{path}",
+        "PATCH /repos/{owner}/{repo}/releases/{release_id}"
+      ],
+      "rank_of_first_hit": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "gs_009",
+      "query": "How do I get the latest release of a repository?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /repos/{owner}/{repo}/releases/latest"
+      ],
+      "retrieved": [
+        "GET /repos/{owner}/{repo}/releases/latest",
+        "PATCH /repos/{owner}/{repo}/releases/{release_id}",
+        "POST /repos/{owner}/{repo}/releases",
+        "GET /repos/{owner}/{repo}/releases/tags/{tag}",
+        "DELETE /repos/{owner}/{repo}/releases/{release_id}/reactions/{reaction_id}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_010",
+      "query": "How do I add a collaborator to a repository?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "PUT /repos/{owner}/{repo}/collaborators/{username}"
+      ],
+      "retrieved": [
+        "PUT /repos/{owner}/{repo}/collaborators/{username}",
+        "PUT /repos/{owner}/{repo}/collaborators/{username}",
+        "PUT /orgs/{org}/actions/variables/{name}/repositories/{repository_id}",
+        "PUT /orgs/{org}/agents/variables/{name}/repositories/{repository_id}",
+        "GET /repos/{owner}/{repo}/collaborators/{username}/permission"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_011",
+      "query": "How do I remove a collaborator from a repo?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "DELETE /repos/{owner}/{repo}/collaborators/{username}"
+      ],
+      "retrieved": [
+        "DELETE /repos/{owner}/{repo}/collaborators/{username}",
+        "DELETE /repos/{owner}/{repo}/agents/variables/{name}",
+        "DELETE /repos/{owner}/{repo}/actions/variables/{name}",
+        "DELETE /orgs/{org}/outside_collaborators/{username}",
+        "PUT /users/{username}/copilot-spaces/{space_number}/collaborators/{actor_type}/{actor_identifier}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_012",
+      "query": "What's the endpoint for adding a reaction to an issue?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions"
+      ],
+      "retrieved": [
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/dependencies/blocked_by",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/issue-field-values",
+        "POST /repos/{owner}/{repo}/issues/comments/{comment_id}/reactions"
+      ],
+      "rank_of_first_hit": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "gs_013",
+      "query": "How do I list all branches in a repository?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /repos/{owner}/{repo}/branches"
+      ],
+      "retrieved": [
+        "GET /repos/{owner}/{repo}/branches",
+        "PUT /repos/{owner}/{repo}/environments/{environment_name}",
+        "POST /repos/{template_owner}/{template_repo}/generate",
+        "GET /repos/{owner}/{repo}/branches/{branch}",
+        "GET /repos/{owner}/{repo}/rulesets/rule-suites"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_014",
+      "query": "How do I check what permission level a user has on a repo?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /repos/{owner}/{repo}/collaborators/{username}/permission"
+      ],
+      "retrieved": [
+        "GET /repos/{owner}/{repo}/collaborators/{username}/permission",
+        "GET /repos/{owner}/{repo}/issues/{issue_number}/assignees/{assignee}",
+        "GET /repos/{owner}/{repo}/assignees/{assignee}",
+        "GET /repos/{owner}/{repo}/codespaces/permissions_check",
+        "GET /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_015",
+      "query": "How can I list all gists for the authenticated user?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /gists"
+      ],
+      "retrieved": [
+        "GET /gists",
+        "GET /gists/starred",
+        "GET /users/{username}/gists",
+        "GET /users/{username}/orgs",
+        "GET /user/codespaces/secrets"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_016",
+      "query": "How do I update the title and body of an existing pull request?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "PATCH /repos/{owner}/{repo}/pulls/{pull_number}"
+      ],
+      "retrieved": [
+        "PATCH /repos/{owner}/{repo}/pulls/{pull_number}",
+        "POST /repos/{owner}/{repo}/pulls",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/update-branch",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
+        "PATCH /repos/{owner}/{repo}/pulls/comments/{comment_id}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_017",
+      "query": "What's the endpoint to invite someone to collaborate and then check pending invitations?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /repos/{owner}/{repo}/invitations",
+        "PUT /repos/{owner}/{repo}/collaborators/{username}"
+      ],
+      "retrieved": [
+        "GET /teams/{team_id}/invitations",
+        "PUT /orgs/{org}/teams/{team_slug}/memberships/{username}",
+        "PUT /teams/{team_id}/memberships/{username}",
+        "PATCH /user/memberships/orgs/{org}",
+        "POST /orgs/{org}/invitations"
+      ],
+      "rank_of_first_hit": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "gs_018",
+      "query": "How do I list all organizations a user belongs to that I can see?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "GET /organizations"
+      ],
+      "retrieved": [
+        "GET /organizations",
+        "GET /user/teams",
+        "GET /orgs/{org}/members",
+        "GET /users/{username}/orgs",
+        "GET /orgs/{org}/teams"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_019",
+      "query": "What are the required fields when creating an issue?",
+      "category": "parameter_schema",
+      "expected": [
+        "POST /repos/{owner}/{repo}/issues"
+      ],
+      "retrieved": [
+        "POST /orgs/{org}/issue-fields",
+        "POST /orgs/{org}/issue-types",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions",
+        "PUT /orgs/{org}/issue-types/{issue_type_id}"
+      ],
+      "rank_of_first_hit": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "gs_020",
+      "query": "What fields can I include in the request body when creating a release?",
+      "category": "parameter_schema",
+      "expected": [
+        "POST /repos/{owner}/{repo}/releases"
+      ],
+      "retrieved": [
+        "POST /repos/{owner}/{repo}/releases/{release_id}/reactions",
+        "PATCH /repos/{owner}/{repo}/releases/assets/{asset_id}",
+        "POST /repos/{owner}/{repo}/releases",
+        "PATCH /repos/{owner}/{repo}/releases/{release_id}",
+        "POST /user/{user_id}/projectsV2/{project_number}/drafts"
+      ],
+      "rank_of_first_hit": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "gs_021",
+      "query": "What's the required field when creating a repository in an org?",
+      "category": "parameter_schema",
+      "expected": [
+        "POST /orgs/{org}/repos"
+      ],
+      "retrieved": [
+        "POST /orgs/{org}/repos",
+        "POST /repos/{template_owner}/{template_repo}/generate",
+        "POST /user/repos",
+        "POST /orgs/{org}/rulesets",
+        "POST /repos/{owner}/{repo}/transfer"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_022",
+      "query": "What parameter controls the merge strategy when merging a pull request?",
+      "category": "parameter_schema",
+      "expected": [
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge"
+      ],
+      "retrieved": [
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "POST /repos/{owner}/{repo}/deployments",
+        "GET /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "GET /repos/{owner}/{repo}/git/ref/{ref}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_023",
+      "query": "What optional fields can I set when updating a pull request?",
+      "category": "parameter_schema",
+      "expected": [
+        "PATCH /repos/{owner}/{repo}/pulls/{pull_number}"
+      ],
+      "retrieved": [
+        "PATCH /repos/{owner}/{repo}/pulls/{pull_number}",
+        "PATCH /repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
+        "POST /repos/{owner}/{repo}/pulls",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/update-branch",
+        "POST /repos/{owner}/{repo}/pulls/{pull_number}/comments"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_024",
+      "query": "Is the path parameter for owner and repo case sensitive when creating an issue?",
+      "category": "parameter_schema",
+      "expected": [
+        "POST /repos/{owner}/{repo}/issues"
+      ],
+      "retrieved": [
+        "DELETE /repos/{owner}/{repo}/issues/{issue_number}/lock",
+        "PUT /repos/{owner}/{repo}/issues/{issue_number}/lock",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/labels",
+        "PUT /repos/{owner}/{repo}/issues/{issue_number}/labels",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/suggestions/{suggestion_id}/dismiss"
+      ],
+      "rank_of_first_hit": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "gs_025",
+      "query": "What scopes are needed to create a private repository?",
+      "category": "auth_scope",
+      "expected": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "retrieved": [
+        "POST /user/repos",
+        "POST /orgs/{org}/repos",
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps",
+        "POST /repos/{template_owner}/{template_repo}/generate",
+        "GET /repos/{owner}/{repo}/agents/secrets/public-key"
+      ],
+      "rank_of_first_hit": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "gs_026",
+      "query": "What's the difference between the repo scope and the public_repo scope?",
+      "category": "auth_scope",
+      "expected": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "retrieved": [
+        "POST /user/repos",
+        "POST /repos/{owner}/{repo}/secret-scanning/custom-patterns",
+        "GET /repos/{owner}/{repo}/teams",
+        "DELETE /repos/{owner}/{repo}/secret-scanning/custom-patterns",
+        "POST /orgs/{org}/repos"
+      ],
+      "rank_of_first_hit": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "gs_027",
+      "query": "How can I check which OAuth scopes my token currently has?",
+      "category": "auth_scope",
+      "expected": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "retrieved": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps",
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps",
+        "GET /user",
+        "POST /applications/{client_id}/token",
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_028",
+      "query": "How do I authenticate my requests to the REST API?",
+      "category": "auth_scope",
+      "expected": [
+        "CONCEPTUAL rest/authentication/authenticating-to-the-rest-api"
+      ],
+      "retrieved": [
+        "CONCEPTUAL rest/authentication/authenticating-to-the-rest-api",
+        "CONCEPTUAL rest/authentication/authenticating-to-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_029",
+      "query": "What does the admin:org scope grant access to?",
+      "category": "auth_scope",
+      "expected": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "retrieved": [
+        "PUT /orgs/{org}/codespaces/access",
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps",
+        "GET /orgs/{org}/actions/runners/downloads",
+        "PUT /orgs/{org}/copilot/coding-agent/permissions",
+        "GET /orgs/{org}/actions/permissions/selected-actions"
+      ],
+      "rank_of_first_hit": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "gs_030",
+      "query": "If I request multiple scopes, will redundant ones be removed?",
+      "category": "auth_scope",
+      "expected": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "retrieved": [
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps",
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps",
+        "CONCEPTUAL rest/authentication/authenticating-to-the-rest-api",
+        "CONCEPTUAL rest/authentication/authenticating-to-the-rest-api",
+        "CONCEPTUAL apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_031",
+      "query": "What does a 410 status code mean when creating an issue?",
+      "category": "error_code",
+      "expected": [
+        "POST /repos/{owner}/{repo}/issues"
+      ],
+      "retrieved": [
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/labels",
+        "DELETE /repos/{owner}/{repo}/issues/{issue_number}/labels",
+        "PUT /repos/{owner}/{repo}/issues/{issue_number}/lock",
+        "GET /repos/{owner}/{repo}/issues/{issue_number}/assignees/{assignee}",
+        "DELETE /repos/{owner}/{repo}/issues/{issue_number}/labels/{name}"
+      ],
+      "rank_of_first_hit": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "gs_032",
+      "query": "What HTTP status code is returned on a successful repository creation?",
+      "category": "error_code",
+      "expected": [
+        "POST /orgs/{org}/repos"
+      ],
+      "retrieved": [
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+        "GET /repos/{owner}/{repo}/stats/code_frequency",
+        "GET /repos/{owner}/{repo}/hooks/{hook_id}/deliveries",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/reactions",
+        "POST /repos/{owner}/{repo}/issues"
+      ],
+      "rank_of_first_hit": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "gs_033",
+      "query": "What response codes can I get when merging a pull request?",
+      "category": "error_code",
+      "expected": [
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge"
+      ],
+      "retrieved": [
+        "GET /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+        "PUT /repos/{owner}/{repo}/pulls/{pull_number}/update-branch",
+        "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events"
+      ],
+      "rank_of_first_hit": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "gs_034",
+      "query": "Why would deleting a repository return a 403 instead of succeeding?",
+      "category": "error_code",
+      "expected": [
+        "DELETE /repos/{owner}/{repo}"
+      ],
+      "retrieved": [
+        "DELETE /repos/{owner}/{repo}",
+        "DELETE /repos/{owner}/{repo}/collaborators/{username}",
+        "GET /organizations/{org}/settings/billing/usage/summary",
+        "DELETE /repos/{owner}/{repo}/contents/{path}",
+        "DELETE /repos/{owner}/{repo}/secret-scanning/custom-patterns"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_035",
+      "query": "What could cause a 404 for a resource I know exists?",
+      "category": "error_code",
+      "expected": [
+        "CONCEPTUAL rest/using-the-rest-api/troubleshooting-the-rest-api"
+      ],
+      "retrieved": [
+        "CONCEPTUAL rest/using-the-rest-api/troubleshooting-the-rest-api",
+        "POST /users/{username}/copilot-spaces/{space_number}/resources",
+        "CONCEPTUAL rest/using-the-rest-api/troubleshooting-the-rest-api",
+        "DELETE /orgs/{org}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+        "DELETE /users/{username}/copilot-spaces/{space_number}/resources/{space_resource_id}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_036",
+      "query": "What's the difference between primary and secondary rate limits?",
+      "category": "rate_limit",
+      "expected": [
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api"
+      ],
+      "retrieved": [
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/troubleshooting-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_037",
+      "query": "How can I check my current rate limit usage?",
+      "category": "rate_limit",
+      "expected": [
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api"
+      ],
+      "retrieved": [
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/getting-started-with-the-rest-api",
+        "GET /orgs/{org}/insights/api/time-stats/users/{user_id}",
+        "GET /rate_limit",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_038",
+      "query": "Can creating too many issues quickly get me rate limited?",
+      "category": "rate_limit",
+      "expected": [
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "POST /repos/{owner}/{repo}/issues"
+      ],
+      "retrieved": [
+        "POST /repos/{owner}/{repo}/issues",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/sub_issues",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
+        "POST /repos/{owner}/{repo}/issues/{issue_number}/dependencies/blocked_by",
+        "DELETE /repos/{owner}/{repo}/issues/{issue_number}/issue-field-values/{issue_field_id}"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "gs_039",
+      "query": "What should my application do when it receives a rate limit error?",
+      "category": "rate_limit",
+      "expected": [
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api"
+      ],
+      "retrieved": [
+        "CONCEPTUAL rest/using-the-rest-api/troubleshooting-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "CONCEPTUAL rest/using-the-rest-api/rate-limits-for-the-rest-api"
+      ],
+      "rank_of_first_hit": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "gs_040",
+      "query": "How do I validate that a webhook delivery actually came from GitHub?",
+      "category": "endpoint_lookup",
+      "expected": [
+        "CONCEPTUAL webhooks/using-webhooks/validating-webhook-deliveries"
+      ],
+      "retrieved": [
+        "CONCEPTUAL webhooks/using-webhooks/validating-webhook-deliveries",
+        "CONCEPTUAL webhooks/using-webhooks/validating-webhook-deliveries",
+        "CONCEPTUAL webhooks/using-webhooks/validating-webhook-deliveries",
+        "POST /repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
+        "POST /repos/{owner}/{repo}/hooks/{hook_id}/tests"
+      ],
+      "rank_of_first_hit": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0
+    }
+  ]
+}

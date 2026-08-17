@@ -1,0 +1,32 @@
+# Requirements for running the Ragas evaluation harness (eval/run_ragas_eval.py)
+#
+# IMPORTANT: install this in a SEPARATE virtual environment from the main
+# app's requirements.txt. This isn't optional — Ragas' dependency chain
+# currently conflicts with the main app's LangChain 1.x stack. Confirmed by
+# testing: Ragas 0.4.x has a broken import against current langchain-community
+# (references a ChatVertexAI path that no longer exists — a known Ragas bug).
+# Pinning ragas==0.3.9 fixes that, but 0.3.9 requires an OLDER langchain-core
+# (~0.3.x), which is incompatible with langchain-groq==1.1.3 /
+# langchain==1.3.14 used by the main app (those require langchain-core>=1.4).
+#
+# Rather than fight these two ecosystems into one environment, keep them
+# separate — this is also just good practice: evaluation tooling often has
+# different, heavier, and faster-moving dependencies than the production
+# app it's evaluating.
+#
+# Setup:
+#   python -m venv .venv-eval
+#   source .venv-eval/bin/activate   (Windows: .venv-eval\Scripts\activate)
+#   pip install -r eval/requirements-eval.txt
+#   $env:GROQ_API_KEY = "your-key"   (still needed — this env calls Groq too, as the judge LLM)
+
+ragas==0.3.9
+langchain-core==0.3.86
+langchain-community==0.3.27
+langchain-openai==0.3.28
+langchain-groq==0.3.8
+langchain-huggingface==0.3.1
+sentence-transformers==3.0.1
+torch>=2.2
+qdrant-client==1.18.0
+rank-bm25==0.2.2

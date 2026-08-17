@@ -1,0 +1,16 @@
+version: "3.8"
+
+# Runs Qdrant (our vector database) locally via Docker — free, no cloud account needed.
+# Start it with: docker-compose up -d
+# Check it's alive at: http://localhost:6333/dashboard
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: ask-my-docs-qdrant
+    ports:
+      - "6333:6333"   # REST API (used by our indexer.py)
+      - "6334:6334"   # gRPC API (faster, optional)
+    volumes:
+      - ./data/qdrant_storage:/qdrant/storage
+    restart: unless-stopped
